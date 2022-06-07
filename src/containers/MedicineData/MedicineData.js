@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { DataGrid } from "@mui/x-data-grid";
-import AddMedicine from "../../containers/AddMedicine/AddMedicine";
+import React, { useState, useEffect } from "react";
+import AddMedicine from "../AddMedicine/AddMedicine";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Dialog from "@mui/material/Dialog";
@@ -11,8 +10,13 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import Button from "@mui/material/Button";
 import EditIcon from "@mui/icons-material/Edit";
+import ListUi from "../ListUi/ListUi";
 
-export default function ListUi() {
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
+function MedicineData(props) {
   const [data, setData] = useState([]);
   const [del, setDel] = useState(false);
   const [rowref, setRowref] = useState();
@@ -28,11 +32,10 @@ export default function ListUi() {
     setRowref(params);
   };
 
-
   const handleEdit = (params) => {
     setEdit(true);
     setRowref(params);
-  }
+  };
 
   const handleFinalDelete = () => {
     let localData = JSON.parse(localStorage.getItem("medicines"));
@@ -64,11 +67,11 @@ export default function ListUi() {
             >
               <DeleteIcon />
             </IconButton>
-            <span style={{ fontSize: "22px", margin: "0px 10px 0px 10px"}}> | </span>
-            <IconButton
-              aria-label="delete"
-              onClick={() => handleEdit(params)}
-            >
+            <span style={{ fontSize: "22px", margin: "0px 10px 0px 10px" }}>
+              {" "}
+              |{" "}
+            </span>
+            <IconButton aria-label="delete" onClick={() => handleEdit(params)}>
               <EditIcon />
             </IconButton>
           </>
@@ -83,34 +86,22 @@ export default function ListUi() {
     if (localData !== null) {
       setData(localData);
     }
-
-    
   };
 
   useEffect(() => {
     getData();
   }, []);
 
-  const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  });
-
-  console.log(data);
-  
   return (
     <>
-      <div style={{ height: 400, width: "100%", marginBottom: "20px" }}>
-        <DataGrid
-          rows={data}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          checkboxSelection
-        />
-      </div>
-      <AddMedicine getDataHandler={getData} edit={edit} handleEditClose={handleClose}/>
+      <ListUi data={data} columns={columns} />
+      <AddMedicine
+        getDataHandler={getData}
+        edit={edit}
+        handleEditClose={handleClose}
+      />
       <Dialog
-        open={del}
+        open={del} 
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
@@ -131,3 +122,5 @@ export default function ListUi() {
     </>
   );
 }
+
+export default MedicineData;

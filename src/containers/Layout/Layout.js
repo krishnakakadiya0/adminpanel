@@ -19,7 +19,6 @@ import ListItemText from "@mui/material/ListItemText";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
 import PersonIcon from "@mui/icons-material/Person";
 import { NavLink } from "react-router-dom";
-import AddMedicine from "../../containers/AddMedicine/AddMedicine";
 
 const drawerWidth = 240;
 

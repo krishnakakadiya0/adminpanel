@@ -1,13 +1,12 @@
 import React from 'react';
-import ListUi from '../../components/ListUi.js/ListUi';
-
+import MedicineData from '../MedicineData/MedicineData';
 function Medicines(props) {
 
    
     return (
         <div>
             <h2>Medicines</h2>
-            <ListUi />
+            <MedicineData />
         </div>
     );
 }

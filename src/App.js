@@ -1,5 +1,5 @@
 import { Route, Switch } from 'react-router-dom';
-import Layout from './components/Layout/Layout';
+import Layout from './containers/Layout/Layout';
 import Medicines from './containers/Medicines/Medicines';
 import Doctors from './containers/Doctors/Doctors';
 
