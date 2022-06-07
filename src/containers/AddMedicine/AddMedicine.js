@@ -40,6 +40,7 @@ export default function AddMedicine({ getDataHandler, edit, handleEditClose }) {
     validationSchema: schema,
     onSubmit: (values) => {
       handleSubmit(values);
+      formik.resetForm();
     },
   });
 
@@ -87,7 +88,7 @@ export default function AddMedicine({ getDataHandler, edit, handleEditClose }) {
           <DialogContentText>
             Add Medicine Name, Price, Expiry Date and it's use
           </DialogContentText>
-          <Formik values = {formik}>
+          <Formik value = {formik}>
             <Form onSubmit={formik.handleSubmit}>
               <TextField
                 autoFocus
@@ -95,6 +96,7 @@ export default function AddMedicine({ getDataHandler, edit, handleEditClose }) {
                 id="name"
                 name="name"
                 label="Medicine Name"
+                type="text"
                 fullWidth
                 variant="standard"
                 onChange={formik.handleChange}
@@ -110,6 +112,7 @@ export default function AddMedicine({ getDataHandler, edit, handleEditClose }) {
                 id="price"
                 name="price"
                 label="Medicine Price"
+                type="number"
                 fullWidth
                 variant="standard"
                 onChange={formik.handleChange}
@@ -125,6 +128,7 @@ export default function AddMedicine({ getDataHandler, edit, handleEditClose }) {
                 id="quantity"
                 name="quantity"
                 label="Medicine Quantity"
+                type="number"
                 fullWidth
                 variant="standard"
                 onChange={formik.handleChange}
@@ -139,6 +143,7 @@ export default function AddMedicine({ getDataHandler, edit, handleEditClose }) {
                 margin="dense"
                 id="expirydate"
                 name="expirydate"
+                type="date"
                 fullWidth
                 variant="standard"
                 onChange={formik.handleChange}
@@ -154,6 +159,7 @@ export default function AddMedicine({ getDataHandler, edit, handleEditClose }) {
                 id="description"
                 name="description"
                 label="Description"
+                type="text"
                 fullWidth
                 variant="standard"
                 onChange={formik.handleChange}
